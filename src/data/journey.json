@@ -1,0 +1,20 @@
+[
+  {
+    "id": "season-1",
+    "seasonLabel": "2025-26 14U",
+    "team": "Elite Hoops Academy",
+    "role": "Starting Guard",
+    "highlights": [
+      "Averaged 12 points per game",
+      "Led team in assists",
+      "Tournament MVP at Regional Showcase"
+    ]
+  },
+  {
+    "id": "season-2",
+    "seasonLabel": "2024-25 13U",
+    "team": "City Ballers Club",
+    "role": "Rotation Guard",
+    "highlights": ["Developed consistent jump shot", "Primary ball handler for second unit"]
+  }
+]

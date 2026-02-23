@@ -1,0 +1,35 @@
+{
+  "slug": "example-player",
+  "displayName": "Mireya M.",
+  "position": "Guard",
+  "classYear": 2031,
+  "clubTeam": "Cyfair Elite New Mexico 14U",
+  "number": "9",
+  "photos": [
+    "/images/players/mireya-profile.jpg"
+  ],
+  "bio": "A dedicated two-way guard with a high basketball IQ. focused on playmaking and perimeter defense. Committed to team success and continuous improvement.",
+  "strengths": [
+    "Ball Handling",
+    "Perimeter Defense",
+    "Court Vision",
+    "Mid-range Shooting"
+  ],
+  "highlightReelUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "filmClips": [
+    {
+      "id": "clip-1",
+      "title": "Crossover to Layup",
+      "description": "Beating the defender off the dribble in transition.",
+      "youtubeUrl": "https://www.youtube.com/watch?v=example1",
+      "category": "Handles & Creation"
+    },
+    {
+      "id": "clip-2",
+      "title": "Catch and Shoot 3",
+      "description": "Corner 3-pointer off the kickout.",
+      "youtubeUrl": "https://www.youtube.com/watch?v=example2",
+      "category": "Perimeter Shooting"
+    }
+  ]
+}
