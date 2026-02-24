@@ -46,7 +46,7 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
           {player.number}
         </div>
 
-        <div className="container relative z-10 px-4 md:px-6">
+        <div className="container relative z-10 px-4 md:px-6 pt-20 pb-32">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-12">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.2em]">
@@ -73,6 +73,41 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
               <div className="flex flex-col items-end gap-2 p-6 rounded-2xl border border-white/5 bg-secondary/20 backdrop-blur-md">
                 <span className="text-[10px] font-black text-primary uppercase tracking-[0.2em]">Recruitment Status</span>
                 <span className="text-2xl font-display font-black uppercase tracking-tighter">Active Prospect</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Technical Stats Bar - Synced with Dashboard */}
+        <div className="absolute bottom-0 w-full bg-secondary/30 backdrop-blur-2xl border-t border-white/5 py-4 z-20">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-wrap justify-between items-center gap-6 md:gap-12">
+              <div className="flex flex-col">
+                <span className="text-[10px] text-primary font-bold uppercase tracking-[0.2em] mb-1">Position</span>
+                <span className="text-sm md:text-base font-display font-black uppercase tracking-wider">{player.position}</span>
+              </div>
+              <div className="hidden sm:flex flex-col">
+                <span className="text-[10px] text-primary font-bold uppercase tracking-[0.2em] mb-1">HT / WT</span>
+                <span className="text-sm md:text-base font-display font-black uppercase tracking-wider">5'2" / 105 LBS</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] text-primary font-bold uppercase tracking-[0.2em] mb-1">Status</span>
+                <div className="flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
+                  <span className="text-sm md:text-base font-display font-black uppercase tracking-wider">Verified</span>
+                </div>
+              </div>
+              <div className="hidden md:flex flex-col">
+                <span className="text-[10px] text-primary font-bold uppercase tracking-[0.2em] mb-1">Dossier ID</span>
+                <span className="text-sm md:text-base font-display font-black uppercase tracking-wider">#{player.number}</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] text-primary font-bold uppercase tracking-[0.2em] mb-1">Intel Grade</span>
+                <div className="flex items-center gap-1">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <div key={i} className={`h-1.5 w-4 rounded-full ${i <= 4 ? "bg-primary" : "bg-white/10"}`} />
+                  ))}
+                </div>
               </div>
             </div>
           </div>

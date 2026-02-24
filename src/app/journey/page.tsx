@@ -1,6 +1,6 @@
 import { Timeline } from "@/components/journey/Timeline";
 import { getJourney } from "@/lib/data";
-import { ListChecks, Clock, ShieldInfo } from "lucide-react";
+import { ListChecks, Clock, ShieldCheck } from "lucide-react";
 
 export default async function JourneyPage() {
   const journeyItems = await getJourney();
@@ -41,7 +41,7 @@ export default async function JourneyPage() {
               <div className="sticky top-24 space-y-8">
                 <div className="p-6 rounded-2xl bg-secondary/20 border border-white/5 backdrop-blur-sm">
                   <h3 className="text-xs font-black text-primary uppercase tracking-widest mb-6 flex items-center gap-2">
-                    <ShieldInfo className="h-3 w-3" /> Data Integrity
+                    <ShieldCheck className="h-3 w-3" /> Data Integrity
                   </h3>
                   <div className="space-y-4">
                     <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-wider pb-4 border-b border-white/5">

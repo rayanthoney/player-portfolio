@@ -20,7 +20,7 @@ export default async function Home() {
           </h1>
         </div>
 
-        <div className="container relative z-10 px-4 md:px-6 py-12 lg:py-24">
+        <div className="container relative z-10 px-4 md:px-6 pt-20 pb-32 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-12 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 flex flex-col space-y-8">
@@ -97,7 +97,7 @@ export default async function Home() {
         </div>
 
         {/* Technical Stats Bar */}
-        <div className="absolute bottom-0 w-full bg-secondary/30 backdrop-blur-xl border-t border-white/5 py-4">
+        <div className="absolute bottom-0 w-full bg-secondary/30 backdrop-blur-2xl border-t border-white/5 py-4 z-20">
           <div className="container px-4 md:px-6">
             <div className="flex flex-wrap justify-between items-center gap-6 md:gap-12">
               <div className="flex flex-col">
@@ -130,10 +130,10 @@ export default async function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Scouting Breakdown Section */}
-      <section className="w-full py-24 bg-background relative overflow-hidden text-foreground">
+      < section className="w-full py-24 bg-background relative overflow-hidden text-foreground" >
         <div className="container px-4 md:px-6 relative z-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-white/5 pb-8">
             <div className="space-y-4">
@@ -170,10 +170,10 @@ export default async function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Recruitment CTA Section */}
-      <section className="w-full py-24 bg-[#0a0a0a] border-t border-white/5 relative group text-foreground">
+      < section className="w-full py-24 bg-[#0a0a0a] border-t border-white/5 relative group text-foreground" >
         <div className="absolute inset-0 bg-primary/2 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
         <div className="container relative z-10 px-4 md:px-6">
           <div className="max-w-4xl mx-auto rounded-3xl p-8 md:p-16 border border-white/10 bg-linear-to-br from-secondary/40 to-black backdrop-blur-xl relative overflow-hidden">
@@ -205,26 +205,8 @@ export default async function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
-      {/* Simplified Bottom Nav */}
-      <footer className="w-full py-12 border-t border-white/5 bg-background text-foreground">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <div className="text-2xl font-display font-black uppercase tracking-tighter italic">
-              Elite Showcase <span className="text-primary text-[0.8em] font-normal not-italic ml-1">v1.2</span>
-            </div>
-            <div className="flex gap-8 text-[10px] font-black uppercase tracking-widest text-muted-foreground">
-              <Link href="/journey" className="hover:text-primary transition-colors">Dossier</Link>
-              <Link href="/film-room" className="hover:text-primary transition-colors">Intelligence</Link>
-              <Link href="/contact" className="hover:text-primary transition-colors">Protocol</Link>
-            </div>
-            <div className="text-[10px] font-bold text-white/20">
-              © 2026 TOP PROSPECTS DATABASE. ALL RIGHTS RESERVED.
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </div >
   );
 }
