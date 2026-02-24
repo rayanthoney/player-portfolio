@@ -4,6 +4,8 @@ import { PlayerCard } from "@/components/player/PlayerCard";
 import { FilmGrid } from "@/components/film/FilmGrid";
 import { Badge } from "@/components/ui/badge";
 import { FilmCategory } from "@/lib/types";
+import { ScoutingAnalysis } from "@/components/player/ScoutingAnalysis";
+import { ShieldCheck, Target, TrendingUp, UserRound, ArrowRight } from "lucide-react";
 
 export async function generateStaticParams() {
   const players = await getAllPlayers();
@@ -29,59 +31,127 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
   const playerFilmCategory: FilmCategory | null =
     player.filmClips && player.filmClips.length > 0
       ? {
-          id: "player-highlights",
-          title: "Player Highlights",
-          description: `Curated clips for ${player.displayName}`,
-          clips: player.filmClips,
-        }
+        id: "player-highlights",
+        title: "Technical Clips",
+        description: `Specific skill execution captured for ${player.displayName}`,
+        clips: player.filmClips,
+      }
       : null;
 
   return (
-    <div className="container px-4 md:px-6 py-12">
-      <div className="grid gap-8 lg:grid-cols-3 lg:gap-12">
-        {/* Left Column: Player Card/Snapshot */}
-        <div className="flex flex-col items-center md:items-start space-y-6">
-          <PlayerCard player={player} />
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
+      {/* Editorial Header */}
+      <section className="relative w-full py-24 overflow-hidden border-b border-white/5">
+        <div className="absolute inset-0 z-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none text-[20vw] font-display font-black leading-none uppercase tracking-tighter">
+          {player.number}
+        </div>
 
-          <div className="w-full space-y-4 pt-6">
-            <h3 className="text-xl font-bold">Bio</h3>
-            <p className="text-muted-foreground">{player.bio}</p>
-          </div>
+        <div className="container relative z-10 px-4 md:px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-12">
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.2em]">
+                <ShieldCheck className="h-3 w-3" /> Individual Intel Report
+              </div>
+              <h1 className="text-6xl md:text-9xl font-display font-black uppercase tracking-tighter leading-[0.8] mb-4">
+                {player.displayName.split(" ")[0]} <br />
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-primary/40">
+                  {player.displayName.split(" ").slice(1).join(" ")}
+                </span>
+              </h1>
+              <div className="flex flex-wrap gap-4 text-sm font-bold uppercase tracking-widest text-muted-foreground">
+                <span className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-primary" /> {player.position}
+                </span>
+                <span>•</span>
+                <span>Class of {player.classYear}</span>
+                <span>•</span>
+                <span>#{player.number}</span>
+              </div>
+            </div>
 
-          <div className="w-full space-y-4">
-            <h3 className="text-xl font-bold">Key Strengths</h3>
-            <div className="flex flex-wrap gap-2">
-              {player.strengths.map((str) => (
-                <Badge key={str} variant="secondary" className="text-sm px-3 py-1">
-                  {str}
-                </Badge>
-              ))}
+            <div className="hidden lg:block pb-4">
+              <div className="flex flex-col items-end gap-2 p-6 rounded-2xl border border-white/5 bg-secondary/20 backdrop-blur-md">
+                <span className="text-[10px] font-black text-primary uppercase tracking-[0.2em]">Recruitment Status</span>
+                <span className="text-2xl font-display font-black uppercase tracking-tighter">Active Prospect</span>
+              </div>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Right Column: Highlight Reel & Film */}
-        <div className="lg:col-span-2 space-y-12">
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold">Main Highlight Reel</h2>
-            <div className="w-full aspect-video rounded-xl overflow-hidden shadow-xl bg-black">
-              <iframe
-                className="w-full h-full"
-                src={player.highlightReelUrl.replace("watch?v=", "embed/")}
-                title={`${player.displayName} Highlights`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+      {/* Main Analysis Section */}
+      <section className="w-full py-24 bg-background relative">
+        <div className="container px-4 md:px-6">
+          <div className="grid lg:grid-cols-12 gap-16">
+            {/* Sidebar Data */}
+            <div className="lg:col-span-4 space-y-12">
+              <div className="sticky top-24 space-y-12">
+                <PlayerCard player={player} />
+
+                <div className="space-y-6">
+                  <h3 className="text-xs font-black text-primary uppercase tracking-[0.2em] flex items-center gap-2">
+                    <UserRound className="h-4 w-4" /> Personal Profile
+                  </h3>
+                  <p className="text-muted-foreground text-sm font-medium leading-relaxed italic border-l-2 border-primary/20 pl-6 py-2">
+                    {player.bio}
+                  </p>
+                </div>
+
+                <div className="p-6 rounded-2xl bg-primary/5 border border-primary/10">
+                  <h4 className="text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+                    <TrendingUp className="h-3 w-3" /> Growth Projection
+                  </h4>
+                  <p className="text-xs font-medium text-muted-foreground leading-relaxed">
+                    Continuous monitoring indicates a significant uptick in on-ball defensive efficiency
+                    and perimeter creation consistency.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Core Insight Column */}
+            <div className="lg:col-span-8 space-y-24">
+              {/* Strengths Analysis */}
+              <div className="space-y-10">
+                <div className="flex items-center gap-4">
+                  <h2 className="text-2xl md:text-4xl font-display font-black uppercase tracking-tight">Technical strengths</h2>
+                  <div className="h-px flex-1 bg-white/5" />
+                </div>
+                <ScoutingAnalysis strengths={player.strengths} />
+              </div>
+
+              {/* Main Reel */}
+              <div className="space-y-10">
+                <div className="flex items-center gap-4">
+                  <h2 className="text-2xl md:text-4xl font-display font-black uppercase tracking-tight">Main Highlight Reel</h2>
+                  <div className="h-px flex-1 bg-white/5" />
+                </div>
+                <div className="group relative w-full aspect-video rounded-3xl overflow-hidden border border-white/5 bg-black shadow-2xl transition-all duration-700 hover:border-primary/20">
+                  <div className="absolute inset-0 z-10 pointer-events-none bg-linear-to-t from-background/40 to-transparent" />
+                  <iframe
+                    className="w-full h-full"
+                    src={player.highlightReelUrl.replace("watch?v=", "embed/")}
+                    title={`${player.displayName} Highlights`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                  {/* Technical Overlay */}
+                  <div className="absolute bottom-6 right-6 z-20 flex items-center gap-3 px-4 py-2 rounded bg-black/60 backdrop-blur-md border border-white/10 text-[9px] font-black uppercase tracking-widest text-primary">
+                    <Target className="h-3 w-3 animate-pulse" /> Live Analysis Layer
+                  </div>
+                </div>
+              </div>
+
+              {/* Film Clips */}
+              {playerFilmCategory && (
+                <div className="space-y-10">
+                  <FilmGrid category={playerFilmCategory} />
+                </div>
+              )}
             </div>
           </div>
-
-          {playerFilmCategory && (
-            <div className="space-y-4">
-              <FilmGrid category={playerFilmCategory} />
-            </div>
-          )}
         </div>
-      </div>
+      </section>
     </div>
   );
 }
