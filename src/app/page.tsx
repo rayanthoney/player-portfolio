@@ -112,7 +112,7 @@ export default async function Home() {
                 <span className="text-[10px] text-primary font-bold uppercase tracking-[0.2em] mb-1">Status</span>
                 <div className="flex items-center gap-2">
                   <div className="h-2 w-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
-                  <span className="text-sm md:text-base font-display font-black uppercase tracking-wider">Elite Grade</span>
+                  <span className="text-sm md:text-base font-display font-black uppercase tracking-wider">Seventh Grade</span>
                 </div>
               </div>
               <div className="hidden md:flex flex-col">
