@@ -30,6 +30,46 @@
       "description": "Corner 3-pointer off the kickout.",
       "youtubeUrl": "https://www.youtube.com/watch?v=example2",
       "category": "Perimeter Shooting"
+    },
+    {
+      "id": "clip-3",
+      "title": "Defensive Lockdown",
+      "description": "On-ball pressure leading to a forced turnover.",
+      "youtubeUrl": "https://www.youtube.com/watch?v=example3",
+      "category": "On-Ball Defense"
+    }
+  ],
+  "journey": [
+    {
+      "id": "season-1",
+      "seasonLabel": "2025-26 14U",
+      "team": "Elite Hoops Academy",
+      "role": "Starting Guard",
+      "highlights": [
+        "Averaged 12 points per game",
+        "Led team in assists",
+        "Tournament MVP at Regional Showcase"
+      ]
+    },
+    {
+      "id": "season-2",
+      "seasonLabel": "2024-25 13U",
+      "team": "City Ballers Club",
+      "role": "Rotation Guard",
+      "highlights": [
+        "Developed consistent jump shot",
+        "Primary ball handler for second unit"
+      ]
+    },
+    {
+      "id": "season-3",
+      "seasonLabel": "2023-24 12U",
+      "team": "Junior All-Stars",
+      "role": "Lead Guard",
+      "highlights": [
+        "Undefeated regional season",
+        "Defensive player of the year"
+      ]
     }
   ]
 }

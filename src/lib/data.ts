@@ -1,85 +1,38 @@
+import fs from "fs";
+import path from "path";
 import { Player } from "./types";
 
-export const players: Player[] = [
-  {
-    slug: "example-player",
-    displayName: "Mireya M.",
-    position: "Guard",
-    classYear: 2031,
-    clubTeam: "Cyfair Elite New Mexico 14U",
-    number: "9",
-    photos: ["/images/players/mireya-profile.jpg"],
-    bio: "A dedicated two-way guard with a high basketball IQ. focused on playmaking and perimeter defense. Committed to team success and continuous improvement.",
-    strengths: [
-      "Ball Handling",
-      "Perimeter Defense",
-      "Court Vision",
-      "Mid-range Shooting"
-    ],
-    highlightReelUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    filmClips: [
-      {
-        id: "clip-1",
-        title: "Crossover to Layup",
-        description: "Beating the defender off the dribble in transition.",
-        youtubeUrl: "https://www.youtube.com/watch?v=example1",
-        category: "Handles & Creation"
-      },
-      {
-        id: "clip-2",
-        title: "Catch and Shoot 3",
-        description: "Corner 3-pointer off the kickout.",
-        youtubeUrl: "https://www.youtube.com/watch?v=example2",
-        category: "Perimeter Shooting"
-      },
-      {
-        id: "clip-3",
-        title: "Defensive Lockdown",
-        description: "On-ball pressure leading to a forced turnover.",
-        youtubeUrl: "https://www.youtube.com/watch?v=example3",
-        category: "On-Ball Defense"
-      }
-    ],
-    journey: [
-      {
-        id: "season-1",
-        seasonLabel: "2025-26 14U",
-        team: "Elite Hoops Academy",
-        role: "Starting Guard",
-        highlights: [
-          "Averaged 12 points per game",
-          "Led team in assists",
-          "Tournament MVP at Regional Showcase"
-        ]
-      },
-      {
-        id: "season-2",
-        seasonLabel: "2024-25 13U",
-        team: "City Ballers Club",
-        role: "Rotation Guard",
-        highlights: [
-          "Developed consistent jump shot",
-          "Primary ball handler for second unit"
-        ]
-      },
-      {
-        id: "season-3",
-        seasonLabel: "2023-24 12U",
-        team: "Junior All-Stars",
-        role: "Lead Guard",
-        highlights: [
-          "Undefeated regional season",
-          "Defensive player of the year"
-        ]
-      }
-    ]
-  }
-];
+const DATA_DIRECTORY = path.join(process.cwd(), "src/data/players");
 
-export function getAllPlayers(): Player[] {
-  return players;
+export async function getAllPlayers(): Promise<Player[]> {
+  try {
+    const files = fs.readdirSync(DATA_DIRECTORY);
+    const playerFiles = files.filter((file) => file.endsWith(".json"));
+
+    const players = playerFiles.map((file) => {
+      const filePath = path.join(DATA_DIRECTORY, file);
+      const fileContent = fs.readFileSync(filePath, "utf8");
+      return JSON.parse(fileContent) as Player;
+    });
+
+    return players;
+  } catch (error) {
+    console.error("Error loading players from data directory:", error);
+    return [];
+  }
 }
 
-export function getPlayerBySlug(slug: string): Player | undefined {
-  return players.find((p) => p.slug === slug);
+export async function getPlayerBySlug(slug: string): Promise<Player | undefined> {
+  try {
+    const filePath = path.join(DATA_DIRECTORY, `${slug}.json`);
+    if (!fs.existsSync(filePath)) {
+      return undefined;
+    }
+
+    const fileContent = fs.readFileSync(filePath, "utf8");
+    return JSON.parse(fileContent) as Player;
+  } catch (error) {
+    console.error(`Error loading player with slug ${slug}:`, error);
+    return undefined;
+  }
 }

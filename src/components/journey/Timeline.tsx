@@ -1,9 +1,9 @@
-import { JourneyItem } from "@/lib/types";
+import { JourneySeason } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { Trophy, Calendar, Star } from "lucide-react";
 
 interface TimelineProps {
-  items: JourneyItem[];
+  items: JourneySeason[];
 }
 
 export function Timeline({ items }: TimelineProps) {
