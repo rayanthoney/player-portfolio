@@ -1,9 +1,10 @@
 import { Timeline } from "@/components/journey/Timeline";
-import { getJourney } from "@/lib/data";
+import { getPlayerBySlug } from "@/lib/data";
 import { ListChecks, Clock, ShieldCheck } from "lucide-react";
 
 export default async function JourneyPage() {
-  const journeyItems = await getJourney();
+  const player = await getPlayerBySlug("example-player");
+  const journeyItems = player?.journey || [];
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">

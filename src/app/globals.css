@@ -3,6 +3,38 @@
 
 @custom-variant dark (&:is(.dark *));
 
+:root {
+  --radius: 0.5rem;
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --card: #121212;
+  --card-foreground: #ffffff;
+  --popover: #121212;
+  --popover-foreground: #ffffff;
+  --primary: #008080;
+  --primary-foreground: #ffffff;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #ffffff;
+  --muted: #1a1a1a;
+  --muted-foreground: #a0a0a0;
+  --accent: #008080;
+  --accent-foreground: #ffffff;
+  --destructive: #7f1d1d;
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: #008080;
+  --chart-1: #008080;
+  --chart-2: #1e293b;
+  --chart-3: #334155;
+  --chart-4: #475569;
+  --chart-5: #64748b;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -47,41 +79,6 @@
   --radius-4xl: calc(var(--radius) + 16px);
 }
 
-:root {
-  --radius: 0.5rem;
-  --background: oklch(0.141 0.005 285.823);
-  /* #0a0a0a */
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.18 0.01 285);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.18 0.01 285);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.484 0.114 184.6);
-  /* #008080 Teal */
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.25 0.02 260);
-  /* Stormcloud Base */
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.22 0.02 260);
-  --muted-foreground: oklch(0.7 0.02 260);
-  --accent: oklch(0.484 0.114 184.6);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.484 0.114 184.6);
-  --chart-1: oklch(0.484 0.114 184.6);
-  --chart-2: oklch(0.3 0.05 260);
-  --chart-3: oklch(0.4 0.05 260);
-  --chart-4: oklch(0.5 0.05 260);
-  --chart-5: oklch(0.6 0.05 260);
-}
-
-/* Ensure dark class is compatible but we are defaulting to dark tokens */
-.dark {
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.985 0 0);
-}
 
 @layer base {
   * {

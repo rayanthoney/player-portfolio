@@ -3,30 +3,30 @@ export interface FilmClip {
   title: string;
   description: string;
   youtubeUrl: string;
-  category: "Handles & Creation" | "Perimeter Shooting" | "On-Ball Defense" | "Other";
+  category: string;
+}
+
+export interface JourneySeason {
+  id: string;
+  seasonLabel: string;
+  team: string;
+  role: string;
+  highlights: string[];
 }
 
 export interface Player {
   slug: string;
-  displayName: string; // First name + initial
+  displayName: string;
   position: string;
   classYear: number;
-  clubTeam: string; // No school name
+  clubTeam: string;
   number: string;
+  photos: string[];
   bio: string;
   strengths: string[];
-  highlightReelUrl: string; // YouTube URL
-  photos?: string[]; // Array of image paths/URLs
-  filmClips?: FilmClip[];
-  contactEmail?: string; // Optional override
-}
-
-export interface JourneyItem {
-  id: string;
-  seasonLabel: string; // e.g. "2025-26 14U"
-  team: string;
-  role: string;
-  highlights: string[];
+  highlightReelUrl: string;
+  filmClips: FilmClip[];
+  journey: JourneySeason[];
 }
 
 export interface FilmCategory {

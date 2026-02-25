@@ -1,53 +1,85 @@
-import fs from "fs";
-import path from "path";
-import { Player, JourneyItem, FilmCategory } from "./types";
+import { Player } from "./types";
 
-const dataDir = path.join(process.cwd(), "src/data");
-
-export async function getPlayerBySlug(slug: string): Promise<Player | null> {
-  try {
-    const filePath = path.join(dataDir, "players", `${slug}.json`);
-    const fileContents = await fs.promises.readFile(filePath, "utf8");
-    return JSON.parse(fileContents);
-  } catch (error) {
-    return null;
-  }
-}
-
-export async function getAllPlayers(): Promise<Player[]> {
-  try {
-    const playersDir = path.join(dataDir, "players");
-    const files = await fs.promises.readdir(playersDir);
-    const players: Player[] = [];
-
-    for (const file of files) {
-      if (file.endsWith(".json")) {
-        const fileContents = await fs.promises.readFile(path.join(playersDir, file), "utf8");
-        players.push(JSON.parse(fileContents));
+export const players: Player[] = [
+  {
+    slug: "example-player",
+    displayName: "Mireya M.",
+    position: "Guard",
+    classYear: 2031,
+    clubTeam: "Cyfair Elite New Mexico 14U",
+    number: "9",
+    photos: ["/images/players/mireya-profile.jpg"],
+    bio: "A dedicated two-way guard with a high basketball IQ. focused on playmaking and perimeter defense. Committed to team success and continuous improvement.",
+    strengths: [
+      "Ball Handling",
+      "Perimeter Defense",
+      "Court Vision",
+      "Mid-range Shooting"
+    ],
+    highlightReelUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    filmClips: [
+      {
+        id: "clip-1",
+        title: "Crossover to Layup",
+        description: "Beating the defender off the dribble in transition.",
+        youtubeUrl: "https://www.youtube.com/watch?v=example1",
+        category: "Handles & Creation"
+      },
+      {
+        id: "clip-2",
+        title: "Catch and Shoot 3",
+        description: "Corner 3-pointer off the kickout.",
+        youtubeUrl: "https://www.youtube.com/watch?v=example2",
+        category: "Perimeter Shooting"
+      },
+      {
+        id: "clip-3",
+        title: "Defensive Lockdown",
+        description: "On-ball pressure leading to a forced turnover.",
+        youtubeUrl: "https://www.youtube.com/watch?v=example3",
+        category: "On-Ball Defense"
       }
-    }
-    return players;
-  } catch (error) {
-    return [];
+    ],
+    journey: [
+      {
+        id: "season-1",
+        seasonLabel: "2025-26 14U",
+        team: "Elite Hoops Academy",
+        role: "Starting Guard",
+        highlights: [
+          "Averaged 12 points per game",
+          "Led team in assists",
+          "Tournament MVP at Regional Showcase"
+        ]
+      },
+      {
+        id: "season-2",
+        seasonLabel: "2024-25 13U",
+        team: "City Ballers Club",
+        role: "Rotation Guard",
+        highlights: [
+          "Developed consistent jump shot",
+          "Primary ball handler for second unit"
+        ]
+      },
+      {
+        id: "season-3",
+        seasonLabel: "2023-24 12U",
+        team: "Junior All-Stars",
+        role: "Lead Guard",
+        highlights: [
+          "Undefeated regional season",
+          "Defensive player of the year"
+        ]
+      }
+    ]
   }
+];
+
+export function getAllPlayers(): Player[] {
+  return players;
 }
 
-export async function getJourney(): Promise<JourneyItem[]> {
-  try {
-    const filePath = path.join(dataDir, "journey.json");
-    const fileContents = await fs.promises.readFile(filePath, "utf8");
-    return JSON.parse(fileContents);
-  } catch (error) {
-    return [];
-  }
-}
-
-export async function getFilmCategories(): Promise<FilmCategory[]> {
-  try {
-    const filePath = path.join(dataDir, "film.json");
-    const fileContents = await fs.promises.readFile(filePath, "utf8");
-    return JSON.parse(fileContents);
-  } catch (error) {
-    return [];
-  }
+export function getPlayerBySlug(slug: string): Player | undefined {
+  return players.find((p) => p.slug === slug);
 }

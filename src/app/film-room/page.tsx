@@ -1,9 +1,26 @@
 import { FilmGrid } from "@/components/film/FilmGrid";
-import { getFilmCategories } from "@/lib/data";
+import { getPlayerBySlug } from "@/lib/data";
 import { Video, Search, ShieldAlert } from "lucide-react";
+import { FilmCategory } from "@/lib/types";
 
 export default async function FilmRoomPage() {
-  const filmCategories = await getFilmCategories();
+  const player = await getPlayerBySlug("example-player");
+
+  // Group clips into categories for the UI
+  const filmCategories: FilmCategory[] = [];
+
+  if (player?.filmClips) {
+    const categories = Array.from(new Set(player.filmClips.map(clip => clip.category)));
+
+    categories.forEach(categoryName => {
+      filmCategories.push({
+        id: `cat-${categoryName.toLowerCase().replace(/\s+/g, '-')}`,
+        title: categoryName,
+        description: `Analysis of ${categoryName.toLowerCase()} performance and technical execution.`,
+        clips: player.filmClips.filter(clip => clip.category === categoryName)
+      });
+    });
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">

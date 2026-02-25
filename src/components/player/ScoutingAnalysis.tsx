@@ -1,7 +1,7 @@
 "use client";
 
+import React, { useEffect, useRef } from "react";
 import { CheckCircle2, Shield, Target, Zap, TrendingUp } from "lucide-react";
-import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -9,12 +9,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface StrengthProps {
     label: string;
-    icon: any;
+    icon: React.ElementType;
     delay: number;
 }
 
 function StrengthBlock({ label, icon: Icon, delay }: StrengthProps) {
-    const blockRef = useRef(null);
+    const blockRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         gsap.fromTo(
