@@ -1,11 +1,12 @@
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 import { getPlayerBySlug, getAllPlayers } from "@/lib/data";
 import { PlayerCard } from "@/components/player/PlayerCard";
 import { FilmGrid } from "@/components/film/FilmGrid";
 import { Badge } from "@/components/ui/badge";
-import { FilmCategory } from "@/lib/types";
+import { FilmCategory, Player } from "@/lib/types";
 import { ScoutingAnalysis } from "@/components/player/ScoutingAnalysis";
-import { ShieldCheck, Target, TrendingUp, UserRound, ArrowRight } from "lucide-react";
+import { ShieldCheck, Target, TrendingUp, UserRound } from "lucide-react";
 
 export async function generateStaticParams() {
   const players = await getAllPlayers();
@@ -20,8 +21,36 @@ interface PlayerPageProps {
   };
 }
 
-export default async function PlayerPage({ params }: PlayerPageProps) {
+export async function generateMetadata({ params }: PlayerPageProps): Promise<Metadata> {
   const player = await getPlayerBySlug(params.slug);
+
+  if (!player) {
+    return {};
+  }
+
+  const title = `${player.displayName} — Elite Prospect Intel Dossier`;
+  const description = player.bio || `${player.displayName} • ${player.position} • Class of ${player.classYear} — Elite Prospect scouting profile.`;
+  const image = player.photos && player.photos.length > 0 ? player.photos[0] : undefined;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: image ? [{ url: image }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: image ? [image] : [],
+    },
+  };
+}
+
+export default async function PlayerPage({ params }: PlayerPageProps) {
+  const player: Player | undefined = await getPlayerBySlug(params.slug);
 
   if (!player) {
     notFound();
@@ -37,6 +66,12 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
         clips: player.filmClips,
       }
       : null;
+
+  // Safe derive embedUrl for the main highlight reel
+  const highlightUrl = player.highlightReelUrl;
+  const embedUrl = highlightUrl && highlightUrl.includes("watch?v=")
+    ? highlightUrl.replace("watch?v=", "embed/")
+    : highlightUrl;
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
@@ -156,29 +191,31 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
               </div>
 
               {/* Main Reel */}
-              <div className="space-y-10">
-                <div className="flex items-center gap-4">
-                  <h2 className="text-2xl md:text-4xl font-display font-black uppercase tracking-tight">Main Highlight Reel</h2>
-                  <div className="h-px flex-1 bg-white/5" />
-                </div>
-                <div className="group relative w-full aspect-video rounded-3xl overflow-hidden border border-white/5 bg-black shadow-2xl transition-all duration-700 hover:border-primary/20">
-                  <div className="absolute inset-0 z-10 pointer-events-none bg-linear-to-t from-background/40 to-transparent" />
-                  <iframe
-                    className="w-full h-full"
-                    src={player.highlightReelUrl.replace("watch?v=", "embed/")}
-                    title={`${player.displayName} Highlights`}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                  {/* Technical Overlay */}
-                  <div className="absolute bottom-6 right-6 z-20 flex items-center gap-3 px-4 py-2 rounded bg-black/60 backdrop-blur-md border border-white/10 text-[9px] font-black uppercase tracking-widest text-primary">
-                    <Target className="h-3 w-3 animate-pulse" /> Live Analysis Layer
+              {player.highlightReelUrl && (
+                <div className="space-y-10">
+                  <div className="flex items-center gap-4">
+                    <h2 className="text-2xl md:text-4xl font-display font-black uppercase tracking-tight">Main Highlight Reel</h2>
+                    <div className="h-px flex-1 bg-white/5" />
+                  </div>
+                  <div className="group relative w-full aspect-video rounded-3xl overflow-hidden border border-white/5 bg-black shadow-2xl transition-all duration-700 hover:border-primary/20">
+                    <div className="absolute inset-0 z-10 pointer-events-none bg-linear-to-t from-background/40 to-transparent" />
+                    <iframe
+                      className="w-full h-full"
+                      src={embedUrl}
+                      title={`${player.displayName} Highlights`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                    {/* Technical Overlay */}
+                    <div className="absolute bottom-6 right-6 z-20 flex items-center gap-3 px-4 py-2 rounded bg-black/60 backdrop-blur-md border border-white/10 text-[9px] font-black uppercase tracking-widest text-primary">
+                      <Target className="h-3 w-3 animate-pulse" /> Live Analysis Layer
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
 
               {/* Film Clips */}
-              {playerFilmCategory && (
+              {player.filmClips && player.filmClips.length > 0 && playerFilmCategory && (
                 <div className="space-y-10">
                   <FilmGrid category={playerFilmCategory} />
                 </div>
