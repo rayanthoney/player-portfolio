@@ -6,6 +6,8 @@ import { FilmGrid } from "@/components/film/FilmGrid";
 import { Badge } from "@/components/ui/badge";
 import { FilmCategory, Player } from "@/lib/types";
 import { ScoutingAnalysis } from "@/components/player/ScoutingAnalysis";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { ShieldCheck, Target, TrendingUp, UserRound } from "lucide-react";
 
 export async function generateStaticParams() {
@@ -93,7 +95,7 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
                   {player.displayName.split(" ").slice(1).join(" ")}
                 </span>
               </h1>
-              <div className="flex flex-wrap gap-4 text-sm font-bold uppercase tracking-widest text-muted-foreground">
+              <div className="flex flex-wrap gap-4 pt-4 text-sm font-bold uppercase tracking-widest text-muted-foreground">
                 <span className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-primary" /> {player.position}
                 </span>
@@ -101,6 +103,14 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
                 <span>Class of {player.classYear}</span>
                 <span>•</span>
                 <span>#{player.number}</span>
+              </div>
+
+              <div className="pt-6">
+                <Button asChild size="lg" className="font-black uppercase tracking-[0.2em] text-[10px] h-12 px-8 rounded-full border border-primary/20 bg-primary/10 text-primary hover:bg-primary hover:text-black transition-all group">
+                  <Link href="#film">
+                    Analyze Film <Target className="ml-2 h-3.5 w-3.5 group-hover:animate-pulse" />
+                  </Link>
+                </Button>
               </div>
             </div>
 
@@ -192,7 +202,7 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
 
               {/* Main Reel */}
               {player.highlightReelUrl && (
-                <div className="space-y-10">
+                <div id="film" className="space-y-10 scroll-mt-32">
                   <div className="flex items-center gap-4">
                     <h2 className="text-2xl md:text-4xl font-display font-black uppercase tracking-tight">Main Highlight Reel</h2>
                     <div className="h-px flex-1 bg-white/5" />

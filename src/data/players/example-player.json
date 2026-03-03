@@ -1,12 +1,12 @@
 {
   "slug": "example-player",
-  "displayName": "Mireya M.",
+  "displayName": "Leslie L.",
   "position": "Guard",
   "classYear": 2031,
   "clubTeam": "Cyfair Elite New Mexico 14U",
   "number": "9",
   "photos": [
-    "/images/players/mireya-profile.jpg"
+    "/images/players/featured-profile.png"
   ],
   "bio": "A dedicated two-way guard with a high basketball IQ. focused on playmaking and perimeter defense. Committed to team success and continuous improvement.",
   "strengths": [

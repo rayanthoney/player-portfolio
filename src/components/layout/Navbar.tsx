@@ -20,10 +20,10 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <div className="h-8 w-8 rounded-md bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-            <span className="text-primary font-display font-black text-sm">M</span>
+            <span className="text-primary font-display font-black text-sm">EP</span>
           </div>
           <span className="font-display font-black text-lg uppercase tracking-tighter">
-            Mireya<span className="text-primary ml-0.5">.</span>
+            Elite Prospect<span className="text-primary ml-0.5">.</span>
           </span>
         </Link>
 

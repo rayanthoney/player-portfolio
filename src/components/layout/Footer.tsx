@@ -37,7 +37,7 @@ export function Footer() {
           {/* Brand Identity */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <div className="text-2xl font-display font-black uppercase tracking-tighter italic">
-              Elite Showcase <span className="text-primary text-[0.8em] font-normal not-italic ml-1">v1.2</span>
+              Elite Prospect <span className="text-primary text-[0.8em] font-normal not-italic ml-1">v1.2</span>
             </div>
             <p className="text-[9px] font-bold text-white/20 uppercase tracking-[0.2em]">
               Authorized Internal Build

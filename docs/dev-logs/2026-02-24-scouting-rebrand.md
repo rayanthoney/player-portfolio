@@ -1,7 +1,7 @@
 # Development Log: Scouting Intelligence Rebrand
 
 ## Session Date: February 24, 2026
-**Project:** Youth Athlete Showcase (Mireya Portfolio)
+**Project:** Youth Athlete Showcase (Leslie Portfolio)
 **Current Branch:** `feature/scouting-landing-page`
 
 ---

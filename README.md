@@ -21,13 +21,13 @@ Version 1.0.0
 ### Premium Digital Scouting Dossiers - Professionalizing the Youth Recruiting Presence
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/rayanthoney/ram911_mireya-portfolio/releases)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/rayanthoney/ram911_mireya-portfolio/actions)
+[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/rayanthoney/ram911_Leslie-portfolio/releases)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/rayanthoney/ram911_Leslie-portfolio/actions)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
-[**Live Demo**](https://ram911-mireya-portfolio.vercel.app/) · [**Documentation**](./docs) · [**Report Bug**](https://github.com/rayanthoney/ram911_mireya-portfolio/issues) · [**Request Feature**](https://github.com/rayanthoney/ram911_mireya-portfolio/issues)
+[**Live Demo**](https://ram911-Leslie-portfolio.vercel.app/) · [**Documentation**](./docs) · [**Report Bug**](https://github.com/rayanthoney/ram911_Leslie-portfolio/issues) · [**Request Feature**](https://github.com/rayanthoney/ram911_Leslie-portfolio/issues)
 
-<img src="public/images/placeholder-hero.png" width="800" alt="Elite Prospect Banner"/>
+<img src="public/images/placeholder-hero.png" width="500" alt="Elite Prospect Banner"/>
 
 </div>
 
@@ -55,7 +55,7 @@ Version 1.0.0
 ## 📖 About The Project
 
 <div align="center">
-<img src="public/images/placeholder-film.png" width="64"/>
+<img src="public/images/placeholder-film.png" width="100 "height="80"/>
 </div>
 
 **Elite Prospect** is a premium, link-friendly digital scouting dossier designed for youth athletes. It transforms standard highlight reels into deep technical evaluations that college coaches and scouts can digest in under 30 seconds.
@@ -93,11 +93,11 @@ Version 1.0.0
 
 ### 🌐 Live Demo
 
-Check out the live application: **[Elite Prospect Live Demo](https://ram911-mireya-portfolio.vercel.app/)**
+Check out the live application: **[Elite Prospect Live Demo](https://ram911-Leslie-portfolio.vercel.app/)**
 
 ### 🎥 Player Profile Preview
 
-An example profile (Mireya R.) is available at `/players/mireya-r`.
+An example profile (Leslie R.) is available at `/players/Leslie-r`.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -136,7 +136,7 @@ An example profile (Mireya R.) is available at `/players/mireya-r`.
 
 1. **Clone the repository**
    ```sh
-   git clone https://github.com/rayanthoney/ram911_mireya-portfolio.git
+   git clone https://github.com/rayanthoney/ram911_Leslie-portfolio.git
    ```
 
 2. **Install dependencies**
@@ -256,7 +256,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/rayanthoney)
 [![Portfolio](https://img.shields.io/badge/Portfolio-047857?style=for-the-badge&logo=google-chrome&logoColor=white)](https://rayanthone.com)
 
-**Project Link:** [https://github.com/rayanthoney/ram911_mireya-portfolio](https://github.com/rayanthoney/ram911_mireya-portfolio)
+**Project Link:** [https://github.com/rayanthoney/ram911_Leslie-portfolio](https://github.com/rayanthoney/ram911_Leslie-portfolio)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
