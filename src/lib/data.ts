@@ -15,7 +15,12 @@ export async function getAllPlayers(): Promise<Player[]> {
       return JSON.parse(fileContent) as Player;
     });
 
-    return players;
+    // Sort players so aaliyah-chavez is always the first player (featured)
+    return players.sort((a, b) => {
+      if (a.slug === "aaliyah-chavez") return -1;
+      if (b.slug === "aaliyah-chavez") return 1;
+      return a.displayName.localeCompare(b.displayName);
+    });
   } catch (error) {
     console.error("Error loading players from data directory:", error);
     return [];

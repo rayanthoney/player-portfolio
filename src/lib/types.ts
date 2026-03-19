@@ -24,6 +24,8 @@ export interface Player {
   photos: string[];
   bio: string;
   strengths: string[];
+  height: string;
+  weight: string;
   highlightReelUrl: string;
   filmClips: FilmClip[];
   journey: JourneySeason[];

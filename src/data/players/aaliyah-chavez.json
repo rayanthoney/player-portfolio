@@ -1,0 +1,35 @@
+{
+    "slug": "aaliyah-chavez",
+    "displayName": "Aaliyah Chavez",
+    "position": "Point Guard",
+    "classYear": 2031,
+    "clubTeam": "Cyfair Elite New Mexico 14U",
+    "number": "2",
+    "photos": [
+        "/images/players/featured-profile.png"
+    ],
+    "bio": "Aaliyah Chavez is a 5'7\" point guard from Albuquerque, New Mexico, playing up for Cyfair Elite New Mexico's 14U program at just 13 years old. A two-time city champion with a combined 22-0 record across championship runs, Chavez has established herself as one of the most competitive guards in her age group in the state. She is known by her coaching staff for setting the standard in practice — consistently leading drills against players one and two years her senior. Her game is built on defensive intensity and decision-making, with a 12-point average and 42% field goal efficiency that reflect composure well beyond her age.\n\nSTRENGTHS:\n\nDefensive anchor. Chavez is a legitimate ball stopper at the point of attack. Her length at 5'7\" combined with active hands and disciplined positioning makes her a disruptive presence on the perimeter. Opposing guards rarely get comfortable in half-court sets when she's locked in.\n\nEfficient scorer. A 42% field goal percentage for a 13-year-old averaging double figures signals good shot selection, not volume shooting. She's not forcing — she's finishing when it counts.\n\nPractice culture. This is the differentiator that doesn't show in a box score. Coaches at every level know that whoever leads practice sets the ceiling for the whole team. Aaliyah does that for a 14U and 15U roster as the youngest player in the gym. That's a program-building trait, not just an individual one.\n\nPlays up, performs. The fact that she's playing 14U at 13 and contributing at this level — not just filling a roster spot — tells evaluators everything about her competitive readiness.",
+    "strengths": [
+        "Ball Handling",
+        "Perimeter Defense",
+        "Court Vision"
+    ],
+    "height": "5'7\"",
+    "weight": "115 LBS",
+    "highlightReelUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "filmClips": [],
+    "journey": [
+        {
+            "id": "season-2024-25",
+            "seasonLabel": "2024–25 14U",
+            "team": "Cyfair Elite NM",
+            "role": "Lead Guard",
+            "highlights": [
+                "12 PPG · 42% FG",
+                "Two-time City Champion",
+                "22-0 record across championship runs",
+                "Playing 14U/15U at age 13"
+            ]
+        }
+    ]
+}

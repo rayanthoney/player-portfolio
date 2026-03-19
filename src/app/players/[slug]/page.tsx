@@ -133,7 +133,9 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
               </div>
               <div className="hidden sm:flex flex-col">
                 <span className="text-[10px] text-primary font-bold uppercase tracking-[0.2em] mb-1">HT / WT</span>
-                <span className="text-sm md:text-base font-display font-black uppercase tracking-wider">5'2" / 105 LBS</span>
+                <span className="text-sm md:text-base font-display font-black uppercase tracking-wider">
+                  {player.height} / {player.weight}
+                </span>
               </div>
               <div className="flex flex-col">
                 <span className="text-[10px] text-primary font-bold uppercase tracking-[0.2em] mb-1">Status</span>

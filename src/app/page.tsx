@@ -21,40 +21,55 @@ export default async function Home() {
         </div>
 
         <div className="container relative z-10 px-4 md:px-6">
-          <div className="max-w-4xl space-y-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest">
-              <ShieldCheck className="h-3 w-3" /> Recruiting Intelligence Platform
-            </div>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left Column */}
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest">
+                <ShieldCheck className="h-3 w-3" /> Recruiting Intelligence Platform
+              </div>
 
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-display font-black leading-[0.85] uppercase tracking-tighter">
-              A serious <br />
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-primary/40">scouting profile</span> <br />
-              for your athlete
-            </h1>
+              <h1 className="text-6xl md:text-8xl lg:text-9xl font-display font-black leading-[0.85] uppercase tracking-tighter">
+                A serious <br />
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-primary/40">scouting profile</span> <br />
+                for your athlete
+              </h1>
 
-            <p className="max-w-xl text-lg md:text-xl text-muted-foreground font-medium leading-relaxed">
-              Elite Prospect turns your game film, strengths, and journey into a professional scouting dossier
-              that coaches can understand in seconds.
-            </p>
+              <p className="max-w-xl text-lg md:text-xl text-muted-foreground font-medium leading-relaxed">
+                Elite Prospect turns your game film, strengths, and journey into a professional scouting dossier
+                that coaches can understand in seconds.
+              </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button asChild size="xl" className="font-bold uppercase tracking-tight h-16 px-10 text-lg">
-                <Link href="/request">
-                  Request Your Athlete’s Profile <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              {featuredPlayer && (
-                <Button asChild variant="outline" size="xl" className="font-bold uppercase tracking-tight h-16 px-10 text-lg border-white/10 hover:bg-white/5">
-                  <Link href={`/players/${featuredPlayer.slug}`}>
-                    View Example Profile
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <Button asChild size="xl" className="font-bold uppercase tracking-tight h-16 px-10 text-lg">
+                  <Link href="/request">
+                    Request Your Athlete’s Profile <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-              )}
+                {featuredPlayer && (
+                  <Button asChild variant="outline" size="xl" className="font-bold uppercase tracking-tight h-16 px-10 text-lg border-white/10 hover:bg-white/5">
+                    <Link href={`/players/${featuredPlayer.slug}`}>
+                      View Example Profile
+                    </Link>
+                  </Button>
+                )}
+              </div>
+
+              <p className="text-xs font-bold text-muted-foreground uppercase tracking-[0.2em]">
+                Built for youth basketball families in 12U–15U who want more than a highlight reel.
+              </p>
             </div>
 
-            <p className="text-xs font-bold text-muted-foreground uppercase tracking-[0.2em]">
-              Built for youth basketball families in 12U–15U who want more than a highlight reel.
-            </p>
+            {/* Right Column - Featured Player Card Preview */}
+            <div className="hidden lg:block relative">
+              <div className="absolute -inset-4 bg-primary/10 blur-3xl rounded-full opacity-50" />
+              <div className="relative flex justify-center">
+                {featuredPlayer && (
+                  <div className="scale-105 md:scale-110">
+                    <PlayerCard player={featuredPlayer} />
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </section>
