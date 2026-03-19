@@ -150,7 +150,7 @@ export default async function Home() {
                     <PlayerCard player={featuredPlayer} />
                   </div>
                 ) : (
-                  <div className="w-full aspect-[4/5] bg-secondary/20 rounded-3xl border border-white/5 flex items-center justify-center">
+                  <div className="w-full aspect-4/5 bg-secondary/20 rounded-3xl border border-white/5 flex items-center justify-center">
                     <p className="text-muted-foreground font-display uppercase tracking-widest">Preview Mode</p>
                   </div>
                 )}

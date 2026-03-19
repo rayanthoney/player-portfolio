@@ -18,20 +18,23 @@ export async function generateStaticParams() {
 }
 
 interface PlayerPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: PlayerPageProps): Promise<Metadata> {
-  const player = await getPlayerBySlug(params.slug);
+  const { slug } = await params;
+  const player = await getPlayerBySlug(slug);
 
   if (!player) {
-    return {};
+    return {
+      title: "Player Not Found",
+    };
   }
 
-  const title = `${player.displayName} — Elite Prospect Intel Dossier`;
-  const description = player.bio || `${player.displayName} • ${player.position} • Class of ${player.classYear} — Elite Prospect scouting profile.`;
+  const title = `${player.displayName} — Intel Dossier`;
+  const description = `${player.displayName} • ${player.position} • Class of ${player.classYear} • ${player.clubTeam} — Elite Prospect scouting profile.`;
   const image = player.photos && player.photos.length > 0 ? player.photos[0] : undefined;
 
   return {
@@ -52,7 +55,8 @@ export async function generateMetadata({ params }: PlayerPageProps): Promise<Met
 }
 
 export default async function PlayerPage({ params }: PlayerPageProps) {
-  const player: Player | undefined = await getPlayerBySlug(params.slug);
+  const { slug } = await params;
+  const player: Player | undefined = await getPlayerBySlug(slug);
 
   if (!player) {
     notFound();
@@ -103,11 +107,13 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
                 <span>Class of {player.classYear}</span>
                 <span>•</span>
                 <span>#{player.number}</span>
+                <span>•</span>
+                <span>{player.clubTeam}</span>
               </div>
 
               <div className="pt-6">
                 <Button asChild size="lg" className="font-black uppercase tracking-[0.2em] text-[10px] h-12 px-8 rounded-full border border-primary/20 bg-primary/10 text-primary hover:bg-primary hover:text-black transition-all group">
-                  <Link href="#film">
+                  <Link href="#film-room">
                     Analyze Film <Target className="ml-2 h-3.5 w-3.5 group-hover:animate-pulse" />
                   </Link>
                 </Button>
@@ -174,9 +180,9 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
                   <h3 className="text-xs font-black text-primary uppercase tracking-[0.2em] flex items-center gap-2">
                     <UserRound className="h-4 w-4" /> Personal Profile
                   </h3>
-                  <p className="text-muted-foreground text-sm font-medium leading-relaxed italic border-l-2 border-primary/20 pl-6 py-2">
+                  <div className="text-muted-foreground text-sm font-medium leading-relaxed italic border-l-2 border-primary/20 pl-6 py-2 whitespace-pre-wrap">
                     {player.bio}
-                  </p>
+                  </div>
                 </div>
 
                 <div className="p-6 rounded-2xl bg-primary/5 border border-primary/10">
@@ -202,36 +208,39 @@ export default async function PlayerPage({ params }: PlayerPageProps) {
                 <ScoutingAnalysis strengths={player.strengths} />
               </div>
 
-              {/* Main Reel */}
-              {player.highlightReelUrl && (
-                <div id="film" className="space-y-10 scroll-mt-32">
-                  <div className="flex items-center gap-4">
-                    <h2 className="text-2xl md:text-4xl font-display font-black uppercase tracking-tight">Main Highlight Reel</h2>
-                    <div className="h-px flex-1 bg-white/5" />
-                  </div>
-                  <div className="group relative w-full aspect-video rounded-3xl overflow-hidden border border-white/5 bg-black shadow-2xl transition-all duration-700 hover:border-primary/20">
-                    <div className="absolute inset-0 z-10 pointer-events-none bg-linear-to-t from-background/40 to-transparent" />
-                    <iframe
-                      className="w-full h-full"
-                      src={embedUrl}
-                      title={`${player.displayName} Highlights`}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                    {/* Technical Overlay */}
-                    <div className="absolute bottom-6 right-6 z-20 flex items-center gap-3 px-4 py-2 rounded bg-black/60 backdrop-blur-md border border-white/10 text-[9px] font-black uppercase tracking-widest text-primary">
-                      <Target className="h-3 w-3 animate-pulse" /> Live Analysis Layer
+              {/* Film Room Section */}
+              <div id="film-room" className="space-y-24 scroll-mt-32">
+                {/* Main Reel */}
+                {player.highlightReelUrl && (
+                  <div className="space-y-10">
+                    <div className="flex items-center gap-4">
+                      <h2 className="text-2xl md:text-4xl font-display font-black uppercase tracking-tight">Main Highlight Reel</h2>
+                      <div className="h-px flex-1 bg-white/5" />
+                    </div>
+                    <div className="group relative w-full aspect-video rounded-3xl overflow-hidden border border-white/5 bg-black shadow-2xl transition-all duration-700 hover:border-primary/20">
+                      <div className="absolute inset-0 z-10 pointer-events-none bg-linear-to-t from-background/40 to-transparent" />
+                      <iframe
+                        className="w-full h-full"
+                        src={embedUrl}
+                        title={`${player.displayName} Highlights`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                      {/* Technical Overlay */}
+                      <div className="absolute bottom-6 right-6 z-20 flex items-center gap-3 px-4 py-2 rounded bg-black/60 backdrop-blur-md border border-white/10 text-[9px] font-black uppercase tracking-widest text-primary">
+                        <Target className="h-3 w-3 animate-pulse" /> Live Analysis Layer
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              {/* Film Clips */}
-              {player.filmClips && player.filmClips.length > 0 && playerFilmCategory && (
-                <div className="space-y-10">
-                  <FilmGrid category={playerFilmCategory} />
-                </div>
-              )}
+                {/* Film Clips */}
+                {player.filmClips && player.filmClips.length > 0 && playerFilmCategory && (
+                  <div className="space-y-10">
+                    <FilmGrid category={playerFilmCategory} />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>

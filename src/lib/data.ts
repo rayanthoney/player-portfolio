@@ -1,11 +1,17 @@
 import fs from "fs";
 import path from "path";
 import { Player } from "./types";
+import { cache } from "react";
 
 const DATA_DIRECTORY = path.join(process.cwd(), "src/data/players");
 
-export async function getAllPlayers(): Promise<Player[]> {
+export const getAllPlayers = cache(async (): Promise<Player[]> => {
   try {
+    if (!fs.existsSync(DATA_DIRECTORY)) {
+      console.warn(`Data directory not found at ${DATA_DIRECTORY}`);
+      return [];
+    }
+
     const files = fs.readdirSync(DATA_DIRECTORY);
     const playerFiles = files.filter((file) => file.endsWith(".json"));
 
@@ -25,9 +31,9 @@ export async function getAllPlayers(): Promise<Player[]> {
     console.error("Error loading players from data directory:", error);
     return [];
   }
-}
+});
 
-export async function getPlayerBySlug(slug: string): Promise<Player | undefined> {
+export const getPlayerBySlug = cache(async (slug: string): Promise<Player | undefined> => {
   try {
     const filePath = path.join(DATA_DIRECTORY, `${slug}.json`);
     if (!fs.existsSync(filePath)) {
@@ -40,4 +46,4 @@ export async function getPlayerBySlug(slug: string): Promise<Player | undefined>
     console.error(`Error loading player with slug ${slug}:`, error);
     return undefined;
   }
-}
+});
